@@ -31,18 +31,33 @@ $mail->SMTPDebug = 2; // Set to 0 for production, 2 for full debug output
 $mail->Debugoutput = 'error_log'; // Log debug output to PHP error log
 
 try {
-    // SMTP config for Gmail
+    // SMTP config for domain email
     $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com';
+    $mail->Host = 'mail.aduraat60.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'rsvpmailng@gmail.com'; // <-- your Gmail address
-    $mail->Password = 'onid rbip ewpc pdlh'; // <-- your Gmail App Password
+    $mail->Username = 'rsvp@aduraat60.com';
+    $mail->Password = 'FgJ%yX_RqE?(';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
     $mail->Port = 465;
 
-    $mail->setFrom('rsvpmailng@gmail.com', 'RSVP Notification'); // <-- your Gmail address
-    // Set recipient to your Gmail address
-    $mail->addAddress('rsvpmailng@gmail.com'); // <-- your Gmail address
+    // Optimize PHPMailer for speed
+    $mail->SMTPKeepAlive = false; // Close connection after each mail
+    $mail->Timeout = 5; // 5 seconds timeout for SMTP connection
+    $mail->SMTPAuth = true;
+    $mail->SMTPAutoTLS = false; // Avoid unnecessary TLS negotiation if not needed
+    $mail->CharSet = 'UTF-8'; // Use efficient charset
+
+    // Allow self-signed certificates for testing (remove for production if possible)
+    $mail->SMTPOptions = [
+        'ssl' => [
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true,
+        ],
+    ];
+
+    $mail->setFrom('rsvp@aduraat60.com', 'RSVP Notification');
+    $mail->addAddress('rsvp@aduraat60.com'); // or your Gmail if you want to receive there
     // Remove Reply-To logic
 
     // Format subject with proper encoding

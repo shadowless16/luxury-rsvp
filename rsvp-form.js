@@ -124,7 +124,7 @@ export default function RsvpForm() {
     setLoading(true)
     setStatus("")
     try {
-      const response = await fetch("http://aduraat60.com/rsvp.php", {
+      const response = await fetch("https://aduraat60.com/rsvp.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
